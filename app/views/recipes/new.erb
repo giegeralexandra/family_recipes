@@ -1,0 +1,17 @@
+<h3>Create New Recipe</h3>
+<br>
+<form action="/recipes" method="POST">
+<p><label for="name">Name: </label>
+<input type="text" id="name" name="name" required></p>
+<p><label for="ingredients">Ingredients: </label>
+<input type="text" id="ingredients" name="ingredients" required></p>
+<p><label for="directions">Directions: </label>
+<input type="text" id="directions" name="directions" required></p>
+<p><label for="meal_type">Meal Type: </label></p>
+<p><input type="radio" name="meal_type"value="Breakfast"> Breakfast</input></p>
+<p><input type="radio" name="meal_type"value="Lunch"> Lunch</input></p>
+<p><input type="radio" name="meal_type"value="Snack"> Snack</input></p>
+<p><input type="radio" name="meal_type"value="Dinner"> Dinner</input></p>
+<p><input type="radio" name="meal_type"value="Dessert"> Dessert</input></p>
+<p><input type="submit" value="Submit"></p>
+</form>
