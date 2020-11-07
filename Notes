@@ -1,0 +1,57 @@
+MVP: 
+User should be allowed to signup
+User should be allowed to login 
+User should be allowed to logout 
+User should be allowed to create a recipe 
+
+Stretch Features:
+User should be allowed to edit a recipe 
+User should be allowed to delet a recipe 
+User should be allowed to filter by recipe meal type
+User should be allowed to filter recipes alphabetically 
+
+Models:
+User has_many Recipes 
+    -name 
+    -username 
+    -email 
+    -password
+Recipe belongs_to User 
+    -ingredients
+    -directions 
+    -meal_type 
+    -user_id
+
+Home page 
+-User Logins In => Login Page 
+-User Signs Up =>Sign Up Page 
+
+Sign Up Page 
+-User enters data 
+-Data must be entered 
+-directed to user recipe page 
+
+Login Page 
+-User enters data 
+-directed to user recipe page 
+
+User Recipe Page 
+-Lists links to all user recipes
+-link to view all recipes in db 
+-link to logout 
+-link to create new recipe 
+
+All Recipe Page 
+-links to all recipes 
+-link to recipe filtered by meal type 
+-logout, home buttons 
+
+Recipe page 
+-link to edit if you are owner 
+-link to delet if you are owner 
+-logout, home buttons 
+
+User Page 
+-shows all recipes with links of the user whos page is being viewed
+
+
