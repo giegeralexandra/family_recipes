@@ -54,7 +54,6 @@ class UsersController < ApplicationController
         else
             erb :'users/error'
         end
-
     end
 
 
