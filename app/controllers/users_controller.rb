@@ -46,7 +46,12 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/:slug' do 
+    get '/users' do 
+        @users = User.all 
+        erb :'users/index'
+    end
+
+    get '/users/:slug' do 
         @user = User.find_by_slug(params[:slug])
         if @user 
             @recipes = @user.recipes
@@ -55,6 +60,8 @@ class UsersController < ApplicationController
             erb :'users/error'
         end
     end
+
+    
 
 
 end

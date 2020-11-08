@@ -9,5 +9,8 @@ class User < ActiveRecord::Base
     def self.find_by_slug(slug)
         User.all.find{|user| user.slug == slug}
     end
-    
+
+    def full_name
+        return "#{self.first_name.capitalize} #{self.last_name.capitalize}"
+    end
 end

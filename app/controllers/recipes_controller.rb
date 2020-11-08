@@ -2,8 +2,12 @@ class RecipesController < ApplicationController
 
     get '/recipes' do 
         if Helpers.logged_in?(session)
-             @user = Helpers.current_user(session)
-             @recipes = Recipe.all 
+            @user = Helpers.current_user(session)
+            @breakfast = Recipe.all.select{|recipe| recipe.meal_type == "Breakfast"}
+            @lunch = Recipe.all.select{|recipe| recipe.meal_type == "Lunch"}
+            @snack = Recipe.all.select{|recipe| recipe.meal_type == "Snack"}
+            @dinner = Recipe.all.select{|recipe| recipe.meal_type == "Dinner"}
+            @dessert = Recipe.all.select{|recipe| recipe.meal_type == "Dessert"}
              erb :'recipes/index'
         else 
             redirect "/login"
@@ -27,6 +31,19 @@ class RecipesController < ApplicationController
             redirect "/recipes/#{recipe.id}"
         else 
             redirect "/login"
+        end
+    end
+
+    get '/recipes/meal_type' do 
+        if Helpers.logged_in?(session)
+            @breakfast = Recipe.all.select{|recipe| recipe.meal_type == "Breakfast"}
+            @lunch = Recipe.all.select{|recipe| recipe.meal_type == "Lunch"}
+            @snack = Recipe.all.select{|recipe| recipe.meal_type == "Snack"}
+            @dinner = Recipe.all.select{|recipe| recipe.meal_type == "Dinner"}
+            @dessert = Recipe.all.select{|recipe| recipe.meal_type == "Dessert"}
+            erb :'recipes/meals'
+        else 
+            redirect '/login'
         end
     end
 
@@ -84,10 +101,13 @@ class RecipesController < ApplicationController
         end        
     end
 
+    
+
+
+
     #view recipes by owner or slug
     #view all owners with links
     #view recipes by meal type 
-    #link recipes 
     #add logout links to each page 
     #add home, profile(slug) links to each page 
     #fix error page 

@@ -1,1 +1,7 @@
-Show Page
+<h2><%= @user.full_name %></h2>
+<br>
+<h3>Recipes:</h3>
+<br>
+<% @recipes.each do |recipe| %>
+    <p><a href=<%= "/recipes/#{recipe.id}" %>><%= recipe.name %></a></p>
+<% end %>
