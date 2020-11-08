@@ -60,7 +60,7 @@ class RecipesController < ApplicationController
         if Helpers.logged_in?(session)
             @recipe = Recipe.find(params[:id])
             if @recipe.user_id != session[:user_id]
-                redirect "/recipes/#{params[:id]}"
+                redirect "/recipes/#{params[:id]}/error"
             else 
                 erb :"recipes/edit"
             end
@@ -71,7 +71,6 @@ class RecipesController < ApplicationController
 
     patch '/recipes/:id' do 
         @recipe = Recipe.find(params[:id])
-        #if (Helpers.logged_in?(session)) && (@recipe.user_id == session[:user_id])  
         if params[:name] != ""
             @recipe.update(name: params[:name])
         end
@@ -85,10 +84,15 @@ class RecipesController < ApplicationController
             @recipe.update(meal_type: params[:meal_type])
         end
         redirect "/recipes/#{@recipe.id}"
-        #elsif (Helpers.logged_in?(session)) && (@recipe.user_id != session[:user_id])
-            #redirect "/recipes/#{@recipe.id}"
-        #else 
-            #redirect "/login"
+    end
+
+    get '/recipes/:id/error' do 
+        @recipe = Recipe.find(params[:id])
+        if Helpers.logged_in?(session)
+            erb :'recipes/edit_error'
+        else 
+            redirect '/login'
+        end
     end
 
     delete '/recipes/:id' do 
@@ -97,22 +101,14 @@ class RecipesController < ApplicationController
             @recipe.destroy
             redirect "/recipes"
         else 
-            redirect "recipes/#{@recipes.id}"
+            redirect "/recipes/#{@recipe.id}/error"
         end        
     end
 
     
-
-
-
-    #view recipes by owner or slug
-    #view all owners with links
-    #view recipes by meal type 
-    #add logout links to each page 
-    #add home, profile(slug) links to each page 
-    #fix error page 
-    #add functionality that gives custom errors - you cannot edit tweet, etc. 
-    #format
-    #css, pictures do I want to add a img functionality? -- very last 
+    #figure out how to require choice from radio button
     #put header and footer on each page in layout.erb
+    #add logout, home, profile(slug), recipes, owners links to each page 
+    #css, pictures do I want to add a img functionality? -- very last 
+    
 end

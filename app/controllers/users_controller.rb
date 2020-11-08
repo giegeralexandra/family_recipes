@@ -33,7 +33,25 @@ class UsersController < ApplicationController
             session[:user_id] = user.id 
             redirect "/recipes"
         else
-            redirect "/login"
+            redirect "/login/error"
+        end
+    end
+
+    get '/login/error' do 
+        if Helpers.logged_in?(session)
+            redirect "/recipes"
+        else 
+            erb :'users/login_error'
+        end
+    end
+
+    post '/login/error' do 
+        user = User.find_by(username: params[:username])
+        if user && user.authenticate(params[:password])
+            session[:user_id] = user.id 
+            redirect "/recipes"
+        else
+            redirect "/login/error"
         end
     end
 
@@ -47,21 +65,26 @@ class UsersController < ApplicationController
     end
 
     get '/users' do 
-        @users = User.all 
-        erb :'users/index'
-    end
-
-    get '/users/:slug' do 
-        @user = User.find_by_slug(params[:slug])
-        if @user 
-            @recipes = @user.recipes
-            erb :'users/show'
-        else
-            erb :'users/error'
+        if Helper.logged_in?(session)
+            @users = User.all 
+            erb :'users/index'
+        else 
+            redirect '/login'
         end
     end
 
-    
-
+    get '/users/:slug' do 
+        if Helper.logged_in?(session)
+            @user = User.find_by_slug(params[:slug])
+            if @user 
+                @recipes = @user.recipes
+                erb :'users/show'
+            else
+                erb :'users/error'
+            end
+        else 
+            redirect '/login'
+        end
+    end
 
 end
