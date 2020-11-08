@@ -1,5 +1,5 @@
 <h3>Recipes</h3>
 <br>
 <% @recipes.each do |recipe| %>
-    <p><%= recipe.name %></p>
+    <a href="/recipes/<%= #{recipe.id} %>"></a>
 <% end %>

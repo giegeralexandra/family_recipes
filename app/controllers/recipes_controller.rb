@@ -84,4 +84,15 @@ class RecipesController < ApplicationController
         end        
     end
 
+    #view recipes by owner or slug
+    #view all owners with links
+    #view recipes by meal type 
+    #link recipes 
+    #add logout links to each page 
+    #add home, profile(slug) links to each page 
+    #fix error page 
+    #add functionality that gives custom errors - you cannot edit tweet, etc. 
+    #format
+    #css, pictures do I want to add a img functionality? -- very last 
+    #put header and footer on each page in layout.erb
 end
