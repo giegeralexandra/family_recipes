@@ -11,9 +11,12 @@
     width: 100%;
   }
 
+@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
+
+
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
+    background-color: rgb(63 25 86 / 29%);
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
@@ -31,8 +34,13 @@
   }
 
   h1 {
-    font-size: 36px;
+    font-size: 55px;
+    font-family: 'Handlee', cursive;
     line-height: 54px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-bottom: 80px; 
   }
 
   h2 {
@@ -40,11 +48,29 @@
     font-size: 24px;
     line-height: 36px;
     margin-bottom: 16px;
+    font-family: 'Handlee', cursive;
+  }
+
+  h2.home_links{
+    border: none; 
+    align-items:center;
+  }
+
+  div.home_links{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+
+  div.home_links a{
+  margin: 25px; 
+  text-align: center; 
   }
 
   h3 {
     font-size: 18px;
     line-height: 36px;
+    font-family: 'Handlee', cursive;
   }
 
   p {
@@ -81,6 +107,11 @@
     margin-top: 20px;
     padding-top: 20px;
   }
+
+    h5.error {
+      color: red; 
+    }
+  
 }
 
 @media screen and (max-width: 600px) {
@@ -112,4 +143,8 @@
     font-size: 18px;
     line-height: 24px;
   }
+
+  }
 }
+
+  

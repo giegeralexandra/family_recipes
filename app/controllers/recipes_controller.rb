@@ -105,8 +105,8 @@ class RecipesController < ApplicationController
         end        
     end
 
-    
-    #figure out how to require choice from radio button
+    #edit error page can be accessed by anybody logged in???
+    #figure out how to require choice from radio button - should I make an error page
     #put header and footer on each page in layout.erb
     #add logout, home, profile(slug), recipes, owners links to each page 
     #css, pictures do I want to add a img functionality? -- very last 

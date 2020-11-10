@@ -4,5 +4,5 @@ class Recipe < ActiveRecord::Base
     def url
         puts "/recipes/#{self.id}"
     end
-    
+
 end
