@@ -8,8 +8,10 @@
 <h3 style="font-size:25px;"><%= "#{@recipe.name}" %></h3>
 <br>
 <p><%= "#{@recipe.meal_type}" %></p>
+<p>Owner: <%= "#{@owner.full_name}" %></p>
 <p>Ingredients: <%= "#{@recipe.ingredients}" %></p>
 <p>Directions: <%= "#{@recipe.directions}" %></p>
+
 <br>
 <p><a href="/recipes/<%= @recipe.id %>/edit">Edit Recipe</a></p>
 <br>

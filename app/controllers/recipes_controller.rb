@@ -49,6 +49,7 @@ class RecipesController < ApplicationController
 
     get '/recipes/:id' do 
         @recipe = Recipe.all.find(params[:id])
+        @owner = User.all.find{|user| user.id == @recipe.user_id}
         if Helpers.logged_in?(session)
             erb :'recipes/show'
         else 
@@ -59,10 +60,10 @@ class RecipesController < ApplicationController
     get '/recipes/:id/edit' do 
         if Helpers.logged_in?(session)
             @recipe = Recipe.find(params[:id])
-            if @recipe.user_id != session[:user_id]
-                redirect "/recipes/#{params[:id]}/error"
-            else 
-                erb :"recipes/edit"
+            if @recipe.user_id == session[:user_id]
+                erb :'/recipes/edit'
+            else
+                redirect "/recipes/#{params[:id]}"
             end
         else 
             redirect '/login'
@@ -86,29 +87,14 @@ class RecipesController < ApplicationController
         redirect "/recipes/#{@recipe.id}"
     end
 
-    get '/recipes/:id/error' do 
-        @recipe = Recipe.find(params[:id])
-        if Helpers.logged_in?(session)
-            erb :'recipes/edit_error'
-        else 
-            redirect '/login'
-        end
-    end
-
     delete '/recipes/:id' do 
         @recipe = Recipe.find(params[:id])
         if @recipe.user_id == session[:user_id]
             @recipe.destroy
             redirect "/recipes"
         else 
-            redirect "/recipes/#{@recipe.id}/error"
+            redirect "/recipes/#{@recipe.id}"
         end        
     end
-
-    #edit error page can be accessed by anybody logged in???
-    #figure out how to require choice from radio button - should I make an error page
-    #put header and footer on each page in layout.erb
-    #add logout, home, profile(slug), recipes, owners links to each page 
-    #css, pictures do I want to add a img functionality? -- very last 
     
 end
