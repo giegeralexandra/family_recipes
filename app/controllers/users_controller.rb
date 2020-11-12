@@ -33,6 +33,7 @@ class UsersController < ApplicationController
             session[:user_id] = user.id 
             redirect "/recipes"
         else
+            flash[:login] = "Email & Password credentials are incorrect. Please try again."
             redirect "/login/error"
         end
     end
@@ -40,8 +41,10 @@ class UsersController < ApplicationController
     get '/login/error' do 
         if Helpers.logged_in?(session)
             redirect "/recipes"
-        else 
+        elsif flash[:login]
             erb :'users/login_error'
+        else 
+            redirect "/login"
         end
     end
 
@@ -50,8 +53,10 @@ class UsersController < ApplicationController
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id 
             redirect "/recipes"
-        else
+        elsif flash[:login]
             redirect "/login/error"
+        else 
+            redirect "/login"
         end
     end
 
