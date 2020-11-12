@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     end
 
     get '/users' do 
-        if Helper.logged_in?(session)
+        if Helpers.logged_in?(session)
             @users = User.all 
             erb :'users/index'
         else 
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/:slug' do 
-        if Helper.logged_in?(session)
+        if Helpers.logged_in?(session)
             @user = User.find_by_slug(params[:slug])
             if @user 
                 @recipes = @user.recipes

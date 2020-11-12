@@ -1,6 +1,13 @@
-<h2>Edit Recipe</h2>
+<div class="home_links">
+    <h2 class="home_links"><a href="/recipes">Recipes</a><h2>
+    <h2 class="home_links"><a href="/users">Users</a><h2>
+    <h2 class="home_links"><a href="/recipes/new">New</a><h2>
+    <h2 class="home_links"><a href="/logout">Logout</a><h2>
+</div>
 <br>
-<h3><%= @recipe.name %></h3>
+<h2 style="font-size:35px;">Edit Recipe</h2>
+<br>
+<h3 style="font-size:25px;"><%= @recipe.name %></h3>
 <br>
 <form action="/recipes/<%= @recipe.id %>" method="POST">
     <input type="hidden" id="hidden" name="_method" value="patch">

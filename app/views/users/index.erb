@@ -1,4 +1,11 @@
-<h2>Users:</h2>
+<div class="home_links">
+    <h2 class="home_links"><a href="/recipes">Recipes</a><h2>
+    <h2 class="home_links"><a href="/users">Users</a><h2>
+    <h2 class="home_links"><a href="/recipes/new">New</a><h2>
+    <h2 class="home_links"><a href="/logout">Logout</a><h2>
+</div>
+<br>
+<h2 style="font-size:35px;">Users:</h2>
 <br>
 <% @users.each do |user| %>
         <p><a href=<%= "/users/#{user.slug}" %>><%= user.full_name %></a></p>

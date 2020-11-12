@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 @media screen {
   /* --- Reset Styles --- */
@@ -20,7 +20,7 @@
   body {
     background-color: rgb(63 25 86 / 29%);
     color: rgb(104, 100, 100);
-    font-family: Sans-Serif;
+    font-family: font-family: 'Open Sans', sans-serif;
     line-height: 18px;
   }
 
@@ -43,7 +43,7 @@
     justify-content: center;
     align-items: center;
     display: flex;
-    padding-bottom: 80px; 
+    padding-bottom: 40px; 
   }
 
   h2 {
@@ -51,7 +51,7 @@
     font-size: 24px;
     line-height: 36px;
     margin-bottom: 16px;
-    font-family: 'Handlee', cursive;
+    font-family: font-family: 'Open Sans', sans-serif;
   }
 
   h2.home_links{
