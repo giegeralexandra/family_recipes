@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
     get '/login' do 
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             redirect "/recipes"
         else 
             erb :'sessions/login' 
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     end
 
     get '/logout' do 
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             session.clear
             redirect "/login"
         else 

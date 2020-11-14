@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
 
     get '/recipes' do 
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             @user = Helpers.current_user(session)
             @breakfast = Recipe.all.select{|recipe| recipe.meal_type == "Breakfast"}
             @lunch = Recipe.all.select{|recipe| recipe.meal_type == "Lunch"}
@@ -15,7 +15,7 @@ class RecipesController < ApplicationController
     end
 
     get '/recipes/new' do 
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             erb :'/recipes/new'
         else 
             redirect '/login'
@@ -26,7 +26,7 @@ class RecipesController < ApplicationController
         #figure out how to require radio button choice 
         if params[:meal_type] == nil 
             redirect "/recipes/new"
-        elsif Helpers.logged_in?(session)
+        elsif logged_in?(session)
             recipe = Recipe.create(name: params[:name], ingredients: params[:ingredients], directions: params[:directions], meal_type: params[:meal_type], user_id: session[:user_id])
             redirect "/recipes/#{recipe.id}"
         else 
@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
     end
 
     get '/recipes/meal_type' do 
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             @breakfast = Recipe.all.select{|recipe| recipe.meal_type == "Breakfast"}
             @lunch = Recipe.all.select{|recipe| recipe.meal_type == "Lunch"}
             @snack = Recipe.all.select{|recipe| recipe.meal_type == "Snack"}
@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
     get '/recipes/:id' do 
         @recipe = Recipe.all.find(params[:id])
         @owner = User.all.find{|user| user.id == @recipe.user_id}
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             erb :'recipes/show'
         else 
             redirect '/login'
@@ -58,7 +58,7 @@ class RecipesController < ApplicationController
     end
 
     get '/recipes/:id/edit' do 
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             @recipe = Recipe.find(params[:id])
             if @recipe.user_id == session[:user_id]
                 erb :'/recipes/edit'

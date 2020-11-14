@@ -1,11 +1,9 @@
 class UsersController < ApplicationController
 
-    get '/' do 
-        erb :'users/homepage' 
-    end
+    
 
     get '/signup' do 
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             redirect "/recipes"
         else 
             erb :'users/signup'
@@ -19,13 +17,7 @@ class UsersController < ApplicationController
         redirect "/recipes"
     end
 
-    get '/login' do 
-        if Helpers.logged_in?(session)
-            redirect "/recipes"
-        else 
-            erb :'users/login' 
-        end
-    end
+    
 
     post '/login' do 
         user = User.find_by(username: params[:username])
@@ -37,17 +29,10 @@ class UsersController < ApplicationController
         end
     end
 
-    get '/logout' do 
-        if Helpers.logged_in?(session)
-            session.clear
-            redirect "/login"
-        else 
-            redirect "/login"
-        end
-    end
+    
 
     get '/users' do 
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             @users = User.all 
             erb :'users/index'
         else 
@@ -56,7 +41,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/:slug' do 
-        if Helpers.logged_in?(session)
+        if logged_in?(session)
             @user = User.find_by_slug(params[:slug])
             if @user 
                 @recipes = @user.recipes
