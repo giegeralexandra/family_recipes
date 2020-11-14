@@ -43,6 +43,10 @@
     <% if flash[:delete_message] %>
     <p style="color: red; font-weight: bold;"><%= flash[:delete_message] %></p>
     <% end %>
+
+    <% if flash[:new_message] %>
+    <p style="color: red; font-weight: bold;"><%= flash[:new_message] %></p>
+    <% end %>
         
     <%= yield %>
 

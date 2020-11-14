@@ -23,8 +23,8 @@ class RecipesController < ApplicationController
     end
 
     post '/recipes' do 
-        #figure out how to require radio button choice 
         if params[:meal_type] == nil 
+            flash[:new_message] = "You must fill in Name, Ingredients, Directions and select Meal Type. Please try again."
             redirect "/recipes/new"
         elsif logged_in?(session)
             recipe = Recipe.create(name: params[:name], ingredients: params[:ingredients], directions: params[:directions], meal_type: params[:meal_type], user_id: session[:user_id])
@@ -64,7 +64,8 @@ class RecipesController < ApplicationController
             if @recipe.user_id == session[:user_id]
                 erb :'/recipes/edit'
             else
-                erb :"/recipes/show"
+                flash[:edit_message] = "You cannot edit a recipe that you did not create."
+                redirect "/recipes/#{params[:id]}"
             end
         else 
             redirect '/login'
@@ -94,6 +95,7 @@ class RecipesController < ApplicationController
             @recipe.destroy
             redirect "/recipes"
         else 
+            flash[:edit_message] = "You cannot delete a recipe that you did not create."
             redirect "/recipes/#{@recipe.id}"
         end        
     end
