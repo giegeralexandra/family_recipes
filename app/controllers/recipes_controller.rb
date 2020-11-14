@@ -60,11 +60,10 @@ class RecipesController < ApplicationController
     get '/recipes/:id/edit' do 
         if logged_in?(session)
             @recipe = Recipe.find(params[:id])
-            #@recipe = current_user.recipes.find_by(params)
             if @recipe.user_id == session[:user_id]
                 erb :'/recipes/edit'
             else
-                flash[:edit_message] = "You cannot edit a recipe that you did not create."
+                flash[:edit_message] = "You cannot edit a recipe that you do not own."
                 redirect "/recipes/#{params[:id]}"
             end
         else 
