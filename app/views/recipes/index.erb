@@ -1,37 +1,32 @@
-<div class="home_links">
-    <h2 class="home_links"><a href="/recipes">Recipes</a><h2>
-    <h2 class="home_links"><a href="/users">Users</a><h2>
-    <h2 class="home_links"><a href="/recipes/new">New</a><h2>
-    <h2 class="home_links"><a href="/logout">Logout</a><h2>
-</div>
+
 <br>
 <h2 style="font-size: 35px;">Recipes</h2>
 <br>
-<h4>Breakfast:</h4>
+<h4 style="font-size: 20px;">Breakfast:</h4>
 <br>
 <% @breakfast.each do |recipe| %>
     <p><a href=<%= "/recipes/#{recipe.id}" %>><%= recipe.name %></a></p>
 <% end %>
 <br>
-<h4>Lunch:</h4>
+<h4 style="font-size: 20px;">Lunch:</h4>
 <br>
 <% @lunch.each do |recipe| %>
     <p><a href=<%= "/recipes/#{recipe.id}" %>><%= recipe.name %></a></p>
 <% end %>
 <br>
-<h4>Snack:</h4>
+<h4 style="font-size: 20px;">Snack:</h4>
 <br>
 <% @snack.each do |recipe| %>
     <p><a href=<%= "/recipes/#{recipe.id}" %>><%= recipe.name %></a></p>
 <% end %>
 <br>
-<h4>Dinner:</h4>
+<h4 style="font-size: 20px;">Dinner:</h4>
 <br>
 <% @dinner.each do |recipe| %>
     <p><a href=<%= "/recipes/#{recipe.id}" %>><%= recipe.name %></a></p>
 <% end %>
 <br>
-<h4>Dessert:</h4>
+<h4 style="font-size: 20px;">Dessert:</h4>
 <br>
 <% @dessert.each do |recipe| %>
     <p><a href=<%= "/recipes/#{recipe.id}" %>><%= recipe.name %></a></p>

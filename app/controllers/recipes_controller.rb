@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
 
     get '/recipes' do 
         if logged_in?(session)
-            @user = Helpers.current_user(session)
+            @user = current_user(session)
             @breakfast = Recipe.all.select{|recipe| recipe.meal_type == "Breakfast"}
             @lunch = Recipe.all.select{|recipe| recipe.meal_type == "Lunch"}
             @snack = Recipe.all.select{|recipe| recipe.meal_type == "Snack"}
@@ -59,10 +59,12 @@ class RecipesController < ApplicationController
 
     get '/recipes/:id/edit' do 
         if logged_in?(session)
-            if @recipe = current_user.recipes.find_by(params[:id])
+            @recipe = Recipe.find(params[:id])
+            #@recipe = current_user.recipes.find_by(params)
+            if @recipe.user_id == session[:user_id]
                 erb :'/recipes/edit'
             else
-                redirect "/recipes/#{params[:id]}"
+                erb :"/recipes/show"
             end
         else 
             redirect '/login'

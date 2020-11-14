@@ -20,7 +20,23 @@
   <body>
     <div class="wrapper">
 
-        <%= yield %>
+    <div class="nav_links"><% if logged_in?(session) %> 
+    <h2 class="nav_links"><a href="/recipes">Recipes</a><h2>
+    <h2 class="nav_links"><a href="/users">Users</a><h2>
+    <h2 class="nav_links"><a href="/recipes/new">New</a><h2>
+    <h2 class="nav_links"><a href="/logout">Logout</a><h2>
+    <% else %>
+    <h2 class="nav_links"><a href="/">Home</a><h2>
+    <h2 class="nav_links"><a href="/login">Login</a><h2>
+    <h2 class="nav_links"><a href="/signup">Signup</a><h2>
+    <% end %>
+    </div>
+
+    <% if flash[:login_message] %>
+    <p style="color: red; font-weight: bold;"><%= flash[:login_message] %></p>
+    <% end %>
+        
+    <%= yield %>
 
       <footer class="branding">
         <small>&copy; 2020 <strong>GiegerFamilyRecipes</strong></small>

@@ -54,20 +54,20 @@
     font-family: 'Handlee', cursive;
   }
 
-  h2.home_links{
+  h2.nav_links{
     border: none; 
     align-items:center;
     font-family: 'Handlee', cursive;
   }
 
-  div.home_links{
+  div.nav_links{
    display: flex;
    justify-content: center;
    align-items: center;
    font-family: 'Handlee', cursive;
   }
 
-  div.home_links a{
+  div.nav_links a{
   margin: 25px; 
   text-align: center; 
   font-family: 'Handlee', cursive;

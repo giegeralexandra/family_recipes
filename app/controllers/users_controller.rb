@@ -1,6 +1,32 @@
 class UsersController < ApplicationController
 
-    
+    get '/login' do 
+        if logged_in?(session)
+            redirect "/recipes"
+        else 
+            erb :'/users/login' 
+        end
+    end
+
+    post '/login' do 
+        @user = User.find_by(username: params[:username])
+        if @user && @user.authenticate(params[:password])
+            session[:user_id] = @user.id 
+            redirect "/recipes"
+        else
+            flash[:login_message] = "Username and email combination are invalid. Please try again or signup."
+            redirect '/login'
+        end
+    end
+
+    get '/logout' do 
+        if logged_in?(session)
+            session.clear
+            redirect "/login"
+        else 
+            redirect "/login"
+        end
+    end
 
     get '/signup' do 
         if logged_in?(session)
@@ -8,7 +34,6 @@ class UsersController < ApplicationController
         else 
             erb :'users/signup'
         end
-
     end
 
     post '/signup' do 
@@ -16,19 +41,6 @@ class UsersController < ApplicationController
         session[:user_id] = user.id 
         redirect "/recipes"
     end
-
-    
-
-    post '/login' do 
-        user = User.find_by(username: params[:username])
-        if user && user.authenticate(params[:password])
-            session[:user_id] = user.id 
-            redirect "/recipes"
-        else
-            redirect "/login"
-        end
-    end
-
     
 
     get '/users' do 
