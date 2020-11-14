@@ -12,4 +12,22 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "pword01493"
   end
 
+  helpers do 
+
+    def current_user(session)
+      User.find(session[:user_id])
+    end
+
+    def logged_in?(session)
+      !!session[:user_id]
+    end
+
+  end
+
+  get '/' do 
+    erb :'users/homepage' 
+  end 
+
+
+
 end
