@@ -51,23 +51,26 @@
     font-size: 24px;
     line-height: 36px;
     margin-bottom: 16px;
-    font-family: font-family: 'Open Sans', sans-serif;
+    font-family: 'Handlee', cursive;
   }
 
   h2.home_links{
     border: none; 
     align-items:center;
+    font-family: 'Handlee', cursive;
   }
 
   div.home_links{
    display: flex;
    justify-content: center;
    align-items: center;
+   font-family: 'Handlee', cursive;
   }
 
   div.home_links a{
   margin: 25px; 
   text-align: center; 
+  font-family: 'Handlee', cursive;
   }
 
   h3 {
