@@ -35,6 +35,14 @@
     <% if flash[:login_message] %>
     <p style="color: red; font-weight: bold;"><%= flash[:login_message] %></p>
     <% end %>
+
+    <% if flash[:edit_message] %>
+    <p style="color: red; font-weight: bold;"><%= flash[:edit_message] %></p>
+    <% end %>
+
+    <% if flash[:delete_message] %>
+    <p style="color: red; font-weight: bold;"><%= flash[:delete_message] %></p>
+    <% end %>
         
     <%= yield %>
 
