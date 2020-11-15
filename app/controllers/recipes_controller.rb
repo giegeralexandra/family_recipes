@@ -23,11 +23,14 @@ class RecipesController < ApplicationController
     end
 
     post '/recipes' do 
-        if params[:meal_type] == nil 
+        if params[:recipe][:meal_type] == nil 
             flash[:new_message] = "You must fill in Name, Ingredients, Directions and select Meal Type. Please try again."
             redirect "/recipes/new"
         elsif logged_in?(session)
-            recipe = Recipe.create(name: params[:name], ingredients: params[:ingredients], directions: params[:directions], meal_type: params[:meal_type], user_id: session[:user_id])
+            recipe = Recipe.create(params[:recipe])
+            recipe.user_id = session[:user_id]
+            recipe.save
+            #(name: params[:name], ingredients: params[:ingredients], directions: params[:directions], meal_type: params[:meal_type], user_id: session[:user_id])
             redirect "/recipes/#{recipe.id}"
         else 
             redirect "/login"

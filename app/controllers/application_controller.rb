@@ -13,7 +13,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do 
-    erb :homepage 
+    if logged_in?(session)
+      redirect "/recipes"
+    else 
+      erb :index 
+    end 
   end
 
   helpers do 
