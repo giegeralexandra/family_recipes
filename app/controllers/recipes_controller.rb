@@ -30,7 +30,6 @@ class RecipesController < ApplicationController
             recipe = Recipe.create(params[:recipe])
             recipe.user_id = session[:user_id]
             recipe.save
-            #(name: params[:name], ingredients: params[:ingredients], directions: params[:directions], meal_type: params[:meal_type], user_id: session[:user_id])
             redirect "/recipes/#{recipe.id}"
         else 
             redirect "/login"
@@ -85,7 +84,7 @@ class RecipesController < ApplicationController
         if params[:directions] != ""
             @recipe.update(directions: params[:directions])
         end
-        if params[:meal_type] != ""
+        if params[:meal_type] != nil
             @recipe.update(meal_type: params[:meal_type])
         end
         redirect "/recipes/#{@recipe.id}"
