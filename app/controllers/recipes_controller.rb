@@ -36,19 +36,6 @@ class RecipesController < ApplicationController
         end
     end
 
-    get '/recipes/meal_type' do 
-        if logged_in?(session)
-            @breakfast = Recipe.all.select{|recipe| recipe.meal_type == "Breakfast"}
-            @lunch = Recipe.all.select{|recipe| recipe.meal_type == "Lunch"}
-            @snack = Recipe.all.select{|recipe| recipe.meal_type == "Snack"}
-            @dinner = Recipe.all.select{|recipe| recipe.meal_type == "Dinner"}
-            @dessert = Recipe.all.select{|recipe| recipe.meal_type == "Dessert"}
-            erb :'recipes/meals'
-        else 
-            redirect '/login'
-        end
-    end
-
     get '/recipes/:id' do 
         @recipe = Recipe.all.find(params[:id])
         @owner = User.all.find{|user| user.id == @recipe.user_id}
