@@ -30,6 +30,12 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
+    def redirect?
+      if !logged_in?(session)
+        redirect '/login'
+      end
+    end
+
   end 
 
 end

@@ -23,27 +23,23 @@ class RecipesController < ApplicationController
     end
 
     post '/recipes' do 
-        if params[:recipe][:meal_type] == nil 
-            flash[:new_message] = "You must fill in Name, Ingredients, Directions and select Meal Type. Please try again."
-            redirect "/recipes/new"
-        elsif logged_in?(session)
-            recipe = Recipe.create(params[:recipe])
-            recipe.user_id = session[:user_id]
-            recipe.save
-            redirect "/recipes/#{recipe.id}"
+        if logged_in?(session)
+            if !params[:recipe][:meal_type]
+                flash[:new_message] = "You must fill in Name, Ingredients, Directions and select Meal Type. Please try again."
+                redirect "/recipes/new"
+            else
+                current_user.recipes.create(params[:recipe])
+                redirect "/recipes/#{recipe.id}"
+            end
         else 
             redirect "/login"
         end
     end
 
     get '/recipes/:id' do 
-        @recipe = Recipe.all.find(params[:id])
-        @owner = User.all.find{|user| user.id == @recipe.user_id}
-        if logged_in?(session)
-            erb :'recipes/show'
-        else 
-            redirect '/login'
-        end
+        redirect?
+        @recipe = Recipe.find(params[:id])
+        erb :'recipes/show'
     end
 
     get '/recipes/:id/edit' do 

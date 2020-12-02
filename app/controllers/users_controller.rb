@@ -37,9 +37,14 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do 
-        user = User.create(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
-        session[:user_id] = user.id 
-        redirect "/recipes"
+        if User.find_by(username: params[:username]) == nil 
+            user = User.create(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
+            session[:user_id] = user.id 
+            redirect "/recipes"
+        else 
+            redirect "/login"
+        end
+        
     end
     
 
